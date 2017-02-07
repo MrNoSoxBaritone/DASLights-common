@@ -28,30 +28,23 @@ DASLights-datastructure.h
 
 
 // stage struct will hold the details of an individual stage
+//Example:   stage myStage = { stageActionStatic, stageTypePrepare, 10, lampSteadyRed, 3 };
 typedef struct
 {
     int action; // what kind of stage - Static/Timed/Goto
-    /* new item - this replaces the message.
-    Waiting 
-    Detail Prepare
-    Detail shoot
-    Detail warning
-    Stop
-    */
-    int type;
-    long time; //How long (seconds) before automatically going to the next stage 
+    int type;   // Wait/Prepare/Shoot/Warning/Stop
+    long time; // Length of the stage in seconds 
     int lamps; // Which lamps are active during this stage
-    int buzzer; // How many buzzers to sound at the start of the stage
+    int buzzer; // How many buzzers to sound at the START of the stage
   //  char *message; // message to display if any
-} stage ;
-//stage myStage = { stageActionStatic, 0, lampSteadyRed, 0 };
- 
+} stage ;  
  
 // shootingSequence struct will hold an entire sequence
 // which comprises of a set of stages and associated data
 struct shootingSequence
 {
   char *name;
+  char *displayName;
   int detailLength;
   stage stagelist[10];
 } ;
@@ -59,7 +52,8 @@ struct shootingSequence
 // define the actual sequence data
 shootingSequence Sequences[] = {
   {
-    "FITA - 3 arrows - single detail",
+    "World Archery 3 arrows - single detail",
+    "WA-120s SNG",
     120,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
@@ -71,7 +65,8 @@ shootingSequence Sequences[] = {
     }
   },
   {
-    "FITA - 3 arrows - double detail",
+    "World Archery 3 arrows - double detail",
+    "WA-120s DBL",
     120,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
@@ -86,7 +81,8 @@ shootingSequence Sequences[] = {
     }
   },
   {
-    "FITA - 6 arrows - single detail",
+    "World Archery 6 arrows - single detail",
+    "WA-240s SNG",
     240,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
@@ -98,7 +94,8 @@ shootingSequence Sequences[] = {
     }
   },
   {
-    "FITA - 6 arrows - double detail",
+    "World Archery 6 arrows - double detail",
+    "WA-240s DBL",
     240,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
@@ -113,7 +110,8 @@ shootingSequence Sequences[] = {
     }
   },
   {
-    "GNAS - single detail",
+    "Archery GB - single detail",
+    "AGB-240s SNG",
     240,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
@@ -125,7 +123,8 @@ shootingSequence Sequences[] = {
     }
   },
   {
-    "Continual 2 minute FITA",
+    "Continuous 2 minute World Archery",
+    "WA-120s CONT"
     120,
     {
       { stageActionStatic, stageTypeWait, 0, lampSteadyRed, 0 },
